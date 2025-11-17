@@ -52,7 +52,8 @@ function HologramDog(){
 function FloatingPhotos(){
   const overlays = [
     { src:'https://images.unsplash.com/photo-1725972289052-a041e940556d?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxTdHJheSUyMGRvZyUyMG5lYXIlMjBiaW5zfGVufDB8MHx8fDE3NjM0MDU4NDV8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80', alt:'Stray dog near bins', className:'top-6 -left-4 sm:-left-10', rotate:-6 },
-    { src:'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=800&auto=format&fit=crop', alt:'Feeding a puppy', className:'-bottom-2 left-10 sm:left-24', rotate:4 },
+    // Creative Commons: Parle-G biscuits photo from Wikimedia Commons (thumb, optimized)
+    { src:'https://images.unsplash.com/photo-1725972289052-a041e940556d?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxTdHJheSUyMGRvZyUyMG5lYXIlMjBiaW5zfGVufDB8MHx8fDE3NjM0MDU4NDV8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80', alt:'Parle-G biscuits in a bowl', className:'-bottom-2 left-10 sm:left-24', rotate:4 },
     { src:'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop', alt:'Street dog resting', className:'top-8 -right-6 sm:-right-12', rotate:7 },
   ]
   return (
