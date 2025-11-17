@@ -31,9 +31,9 @@ export default function GalleryCube({ images = [] }){
             'rotateX(-90deg) translateZ(150px)'
           ]
           return (
-            <figure key={i} className="absolute inset-0 rounded-xl overflow-hidden border border-white/10 shadow-[0_0_25px_rgba(22,242,255,0.25)]" style={{transform: faceTransforms[i]}}>
+            <figure key={i} className="absolute inset-0 rounded-xl overflow-hidden border border-slate-200 shadow-[0_10px_25px_rgba(2,6,23,0.15)] bg-white" style={{transform: faceTransforms[i]}}>
               <img src={src.src} alt={src.alt} loading="lazy" className="h-full w-full object-cover" />
-              <figcaption className="absolute bottom-0 inset-x-0 bg-black/40 text-center text-sm text-white/90 py-1">
+              <figcaption className="absolute bottom-0 inset-x-0 bg-white/70 text-center text-sm text-slate-800 py-1">
                 {src.caption}
               </figcaption>
             </figure>
