@@ -49,6 +49,33 @@ function HologramDog(){
   )
 }
 
+function FloatingPhotos(){
+  const overlays = [
+    { src:'https://images.unsplash.com/photo-1725972289052-a041e940556d?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxTdHJheSUyMGRvZyUyMG5lYXIlMjBiaW5zfGVufDB8MHx8fDE3NjM0MDU4NDV8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80', alt:'Stray dog near bins', className:'top-6 -left-4 sm:-left-10', rotate:-6 },
+    { src:'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=800&auto=format&fit=crop', alt:'Feeding a puppy', className:'-bottom-2 left-10 sm:left-24', rotate:4 },
+    { src:'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop', alt:'Street dog resting', className:'top-8 -right-6 sm:-right-12', rotate:7 },
+  ]
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div className="relative w-[420px] h-[420px] sm:w-[520px] sm:h-[520px]">
+        {overlays.map((o,i)=> (
+          <motion.img
+            key={i}
+            src={o.src}
+            alt={o.alt}
+            loading="lazy"
+            initial={{opacity:0, y:10, rotate:o.rotate}}
+            animate={{opacity:1, y:[0,-6,0]}}
+            transition={{duration:0.9, delay:0.2*i, repeat:Infinity, repeatType:'reverse'}}
+            className={`absolute rounded-2xl border border-slate-200 shadow-[0_12px_30px_rgba(2,6,23,0.15)] object-cover ${o.className}`}
+            style={{width:i===1? 140: 120, height:i===1? 140: 120}}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Hero() {
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
@@ -73,7 +100,8 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        <div className="mt-8 flex items-center justify-center">
+        <div className="mt-8 flex items-center justify-center relative">
+          <FloatingPhotos />
           <HologramDog />
         </div>
 
