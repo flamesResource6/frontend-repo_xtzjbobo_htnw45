@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { track } from '../lib/analytics'
-import { Plus, Minus, CheckCircle2 } from 'lucide-react'
+import { Plus, Minus } from 'lucide-react'
 
 function OptionCard({title, subtitle, packets, cta, onSelect}){
   return (
@@ -21,10 +21,9 @@ function OptionCard({title, subtitle, packets, cta, onSelect}){
 function GlassQR({ upiId, amount }){
   return (
     <div className="relative rounded-3xl p-6 ring-1 ring-white/10 bg-white/5" style={{perspective:'1000px'}}>
-      <div className="relative mx-auto h-64 w-64 [transform-style:preserve-3d] animate-[spin_20s_linear_infinite]">
+      <div className="relative mx-auto h-64 w-64 [transform-style:preserve-3d] animate-[spin_20s_linear_infinite]" aria-hidden>
         <div className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_0_40px_rgba(22,242,255,0.25)] [transform:rotateY(18deg)_rotateX(6deg)_translateZ(20px)]" />
         <div className="absolute inset-3 rounded-xl grid place-items-center bg-[#000814]/60 border border-white/20">
-          {/* Replace with actual QR image in /public later */}
           <svg width="200" height="200" viewBox="0 0 100 100" role="img" aria-label="UPI QR code placeholder">
             <rect x="0" y="0" width="100" height="100" fill="white" />
             <rect x="5" y="5" width="20" height="20" fill="#000" />
@@ -48,6 +47,7 @@ function GlassQR({ upiId, amount }){
 export default function Donate(){
   const [packets, setPackets] = useState(10)
   const [confirmed, setConfirmed] = useState(false)
+  const [todayCount, setTodayCount] = useState(0)
   const upiId = '8726446470@ptaxis'
   const pricePerPacket = 5
   const minPackets = 10
@@ -62,14 +62,19 @@ export default function Donate(){
     setPackets(v ? parseInt(v) : '')
   }
   const selectAndTrack = (n)=>{ setPackets(n); track('select_packets', { n }) }
-  const confirm = ()=>{ setConfirmed(true); track('confirm_donate', { packets: Math.max(minPackets, Number(packets)||minPackets), amount }) }
+  const confirm = ()=>{
+    const count = Math.max(minPackets, Number(packets)||minPackets)
+    setConfirmed(true)
+    setTodayCount(c=> c + count)
+    track('confirm_donate', { packets: count, amount: count*pricePerPacket })
+  }
 
   return (
     <section id="donate" className="relative py-24 bg-[#000009]">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold text-[#F9F9F9]">Donate Biscuit Packets</h2>
-          <p className="mt-3 text-[#8C8C8C]">One packet = a meal for 2–3 dogs. Today: 0 packets donated.</p>
+          <p className="mt-3 text-[#8C8C8C]">One packet = a meal for 2–3 dogs. <span aria-live="polite">Today: {todayCount} packets donated.</span></p>
           <p className="mt-1 text-[#16F2FF]">Minimum donation = 10 packets</p>
         </div>
 
@@ -86,7 +91,7 @@ export default function Donate(){
             <div className="mt-4 flex items-center gap-3">
               <button aria-label="Decrease" onClick={dec} className="p-3 rounded-xl bg-white/10 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16F2FF]"><Minus size={16} /></button>
               <input aria-label="Packet count" value={packets} onChange={handleCustomChange} inputMode="numeric" pattern="[0-9]*" placeholder="e.g. 27" className="w-28 text-center rounded-xl bg-[#000814] ring-1 ring-white/10 focus:ring-2 focus:ring-[#16F2FF] px-3 py-3 text-[#F9F9F9] placeholder:text-[#8C8C8C] outline-none" />
-              <button aria-label="Increase" onClick={inc} className="p-3 rounded-xl bg-white/10 hover:bg:white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16F2FF]"><Plus size={16} /></button>
+              <button aria-label="Increase" onClick={inc} className="p-3 rounded-xl bg-white/10 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16F2FF]"><Plus size={16} /></button>
             </div>
             <div className="mt-4 text-[#F9F9F9] flex items-center justify-between">
               <span>Packets: <b>{Math.max(minPackets, Number(packets)||minPackets)}</b></span>

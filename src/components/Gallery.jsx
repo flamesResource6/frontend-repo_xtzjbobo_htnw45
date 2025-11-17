@@ -6,8 +6,8 @@ export default function Gallery(){
     { src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1200&auto=format&fit=crop', alt:'Street dog resting', caption:'Street friend resting' },
     { src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22?q=80&w=1200&auto=format&fit=crop', alt:'Dog with kind eyes', caption:'Those eyes say it all' },
     { src: 'https://images.unsplash.com/photo-1548191265-cc70d3d45ba1?q=80&w=1200&auto=format&fit=crop', alt:'Volunteer and dog', caption:'Care and kindness' },
-    { src: 'https://images.unsplash.com/photo-1525253013412-55f059d68f3e?q=80&w=1200&auto=format&fit=crop', alt:'Dog silhouette', caption:'Waiting for a meal' },
-    { src: 'https://images.unsplash.com/photo-1504598298377-22ce3b3fb3ef?q=80&w=1200&auto=format&fit=crop', alt:'Happy dog', caption:'Joy after food' }
+    { src: 'https://images.unsplash.com/photo-1644678948127-a022d61f8d25?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQdXBweSUyMGJlaW5nJTIwZmVkfGVufDB8MHx8fDE3NjM0MDQ5NTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80', alt:'Dog silhouette', caption:'Waiting for a meal' },
+    { src: 'https://images.unsplash.com/photo-1644678948127-a022d61f8d25?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQdXBweSUyMGJlaW5nJTIwZmVkfGVufDB8MHx8fDE3NjM0MDQ5NTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80', alt:'Happy dog', caption:'Joy after food' }
   ]
 
   return (

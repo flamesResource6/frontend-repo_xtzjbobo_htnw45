@@ -10,7 +10,7 @@ import FloatingDonate from './components/FloatingDonate'
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#000009] text-[#F9F9F9]">
+    <div className="min-h-screen bg-white text-slate-900">
       <Hero />
       <About />
       <Donate />
